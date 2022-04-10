@@ -1,3 +1,10 @@
+            .data:
+
+
+
+
+            .text:
+
 main:                                   # @main
         addi    sp, sp, -1760
         sw      ra, 1756(sp)                    # 4-byte Folded Spill
@@ -67,15 +74,15 @@ label_8:
         addi    a0, s0, -592
         addi    a1, s0, -1168
         addi    a2, s0, -1744
-        call    matrix_mult(int (*) [12], int (*) [12], int (*) [12], int, int)
+        call    matrix_mult
         lw      a0, -16(s0)
         lw      ra, 1756(sp)                    # 4-byte Folded Reload
         lw      s0, 1752(sp)                    # 4-byte Folded Reload
         addi    sp, sp, 1760
-        ret
+        j end
 
 
-matrix_mult(int (*) [12], int (*) [12], int (*) [12], int, int):          # @matrix_mult(int (*) [12], int (*) [12], int (*) [12], int, int)
+matrix_mult:
         
         addi    sp, sp, -48
         sw      ra, 44(sp)                      # 4-byte Folded Spill
@@ -176,3 +183,5 @@ labelmult_12:
         lw      s0, 40(sp)                      # 4-byte Folded Reload
         addi    sp, sp, 48
         ret
+end:
+    nop
