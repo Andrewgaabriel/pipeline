@@ -5,7 +5,7 @@ main:                                   # @main
         addi    s0, sp, 336
         li      a0, 0
         sw      a0, -12(s0)
-        li      a1, 5 # dimensão
+        li      a1, 5
         sw      a1, -316(s0)
         sw      a1, -320(s0)
         sw      a0, -324(s0)
@@ -70,7 +70,7 @@ LBB0_8:
         lw      s0, 328(sp)                     # 4-byte Folded Reload
         addi    sp, sp, 336
         ret
-matrix_mult:           # @matrix_mult
+matrix_mult:                            # @matrix_mult
         addi    sp, sp, -48
         sw      ra, 44(sp)                      # 4-byte Folded Spill
         sw      s0, 40(sp)                      # 4-byte Folded Spill

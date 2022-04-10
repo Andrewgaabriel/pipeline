@@ -1,89 +1,80 @@
-            .data:
-
-
-
-
-            .text:
-
 main:                                   # @main
-        addi    sp, sp, -1760
-        sw      ra, 1756(sp)                    # 4-byte Folded Spill
-        sw      s0, 1752(sp)                    # 4-byte Folded Spill
-        addi    s0, sp, 1760
+
+        addi    sp, sp, -336
+        sw      ra, 332(sp)                     # 4-byte Folded Spill
+        sw      s0, 328(sp)                     # 4-byte Folded Spill
+        addi    s0, sp, 336
         li      a0, 0
-        sw      a0, -16(s0)
-        li      a1, 11
-        sw      a1, -1748(s0)
-        li      a1, 12
-        sw      a1, -1752(s0)
-        sw      a0, -1756(s0)
+        sw      a0, -12(s0)
+        li      a1, 5
+        sw      a1, -316(s0)
+        sw      a1, -320(s0)
+        sw      a0, -324(s0)
 
 
 label_1:                                # =>This Loop Header: Depth=1
-        lw      a0, -1756(s0)
-        lw      a1, -1748(s0)
-        bge     a0, a1, label_8
-        li      a0, 0
-        sw      a0, -1760(s0)
 
+        lw      a0, -324(s0)
+        lw      a1, -316(s0)
+        bge     a0, a1, label_8
+
+        li      a0, 0
+        sw      a0, -328(s0)
 
 label_3:                                #   Parent Loop BB0_1 Depth=1
-        lw      a0, -1760(s0)
-        lw      a1, -1752(s0)
+
+        lw      a0, -328(s0)
+        lw      a1, -320(s0)
         bge     a0, a1, label_6
 
-
-        lw      a1, -1756(s0)
-        lw      a2, -1760(s0)
+        lw      a1, -324(s0)
+        lw      a2, -328(s0)
         add     a0, a1, a2
-        li      a3, 48
+        li      a3, 20
         mul     a4, a1, a3
-        addi    a1, s0, -592
+        addi    a1, s0, -112
         add     a1, a1, a4
         slli    a2, a2, 2
         add     a1, a1, a2
         sw      a0, 0(a1)
-        lw      a2, -1756(s0)
-        lw      a1, -1760(s0)
+        lw      a2, -324(s0)
+        lw      a1, -328(s0)
         sub     a0, a2, a1
         mul     a3, a1, a3
-        addi    a1, s0, -1168
+        addi    a1, s0, -212
         add     a1, a1, a3
         slli    a2, a2, 2
         add     a1, a1, a2
         sw      a0, 0(a1)
 
-
-        lw      a0, -1760(s0)
+        lw      a0, -328(s0)
         addi    a0, a0, 1
-        sw      a0, -1760(s0)
+        sw      a0, -328(s0)
         j       label_3
-
 
 label_6:                                #   in Loop: Header=BB0_1 Depth=1
 
-        lw      a0, -1756(s0)
+        lw      a0, -324(s0)
         addi    a0, a0, 1
-        sw      a0, -1756(s0)
+        sw      a0, -324(s0)
         j       label_1
 
-
 label_8:
-        lw      a3, -1748(s0)
-        lw      a4, -1752(s0)
-        addi    a0, s0, -592
-        addi    a1, s0, -1168
-        addi    a2, s0, -1744
+
+        lw      a3, -316(s0)
+        lw      a4, -320(s0)
+        addi    a0, s0, -112
+        addi    a1, s0, -212
+        addi    a2, s0, -312
         call    matrix_mult
-        lw      a0, -16(s0)
-        lw      ra, 1756(sp)                    # 4-byte Folded Reload
-        lw      s0, 1752(sp)                    # 4-byte Folded Reload
-        addi    sp, sp, 1760
+        lw      a0, -12(s0)
+        lw      ra, 332(sp)                     # 4-byte Folded Reload
+        lw      s0, 328(sp)                     # 4-byte Folded Reload
+        addi    sp, sp, 336
         j end
 
+matrix_mult:                            # @matrix_mult
 
-matrix_mult:
-        
         addi    sp, sp, -48
         sw      ra, 44(sp)                      # 4-byte Folded Spill
         sw      s0, 40(sp)                      # 4-byte Folded Spill
@@ -96,37 +87,35 @@ matrix_mult:
         li      a0, 0
         sw      a0, -40(s0)
 
-labelmult_1:                                # =>This Loop Header: Depth=1
+
+label_mult_1:                                # =>This Loop Header: Depth=1
 
         lw      a0, -40(s0)
         lw      a1, -24(s0)
-        bge     a0, a1, labelmult_12
+        bge     a0, a1, label_mult_12
 
         li      a0, 0
         sw      a0, -44(s0)
 
+label_mult_3:                                #   Parent Loop BB1_1 Depth=1
 
-labelmult_3:                                #   Parent Loop BB1_1 Depth=1
         lw      a0, -44(s0)
         lw      a1, -28(s0)
-        bge     a0, a1, labelmult_11
-
+        bge     a0, a1, label_mult_10
 
         li      a0, 0
         sw      a0, -36(s0)
         sw      a0, -32(s0)
 
-
-labelmult_5:                                #   Parent Loop BB1_1 Depth=1
+label_mult_5:                                #   Parent Loop BB1_1 Depth=1
 
         lw      a0, -32(s0)
         lw      a1, -24(s0)
-        bge     a0, a1, labelmult_8
-
+        bge     a0, a1, label_mult_8
 
         lw      a0, -12(s0)
         lw      a1, -40(s0)
-        li      a3, 48
+        li      a3, 20
         mul     a1, a1, a3
         add     a0, a0, a1
         lw      a2, -32(s0)
@@ -145,19 +134,17 @@ labelmult_5:                                #   Parent Loop BB1_1 Depth=1
         add     a0, a0, a1
         sw      a0, -36(s0)
 
-
         lw      a0, -32(s0)
         addi    a0, a0, 1
         sw      a0, -32(s0)
-        j       labelmult_5
+        j       label_mult_5
 
-
-labelmult_8:                                #   in Loop: Header=BB1_3 Depth=2
+label_mult_8:                                #   in Loop: Header=BB1_3 Depth=2
 
         lw      a0, -36(s0)
         lw      a1, -20(s0)
         lw      a2, -40(s0)
-        li      a3, 48
+        li      a3, 20
         mul     a2, a2, a3
         add     a1, a1, a2
         lw      a2, -44(s0)
@@ -168,20 +155,21 @@ labelmult_8:                                #   in Loop: Header=BB1_3 Depth=2
         lw      a0, -44(s0)
         addi    a0, a0, 1
         sw      a0, -44(s0)
-        j       labelmult_3
+        j       label_mult_3
 
-
-labelmult_11:                               #   in Loop: Header=BB1_1 Depth=1
+label_mult_10:                               #   in Loop: Header=BB1_1 Depth=1
 
         lw      a0, -40(s0)
         addi    a0, a0, 1
         sw      a0, -40(s0)
-        j       labelmult_1
+        j       label_mult_1
 
-labelmult_12:
+label_mult_12:
+
         lw      ra, 44(sp)                      # 4-byte Folded Reload
         lw      s0, 40(sp)                      # 4-byte Folded Reload
         addi    sp, sp, 48
         ret
+
 end:
-    nop
+        nop
